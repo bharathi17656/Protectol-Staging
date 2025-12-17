@@ -9,11 +9,11 @@
 
     <record id="group_purchase_internal" model="res.groups">
         <field name="name">Internal Procurement</field>
-        <field name="category_id" ref="base.module_category_inventory_purchase"/>
+        <field name="privilege_id" ref="res_groups_privilege_purchase"/>
     </record>
      <record id="group_purchase_external" model="res.groups">
         <field name="name">External Procurement</field>
-        <field name="category_id" ref="base.module_category_inventory_purchase"/>
+        <field name="privilege_id" ref="res_groups_privilege_purchase"/>
     </record>
 
     </data>
