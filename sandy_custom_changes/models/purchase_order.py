@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo import SUPERUSER_ID
 from odoo.exceptions import UserError
 
 class PurchaseOrder(models.Model):
@@ -30,11 +31,11 @@ class PurchaseOrder(models.Model):
         
     )
 
-    @api.depends('is_admin') # Add relevant dependency if needed, otherwise optional
+    @api.depends('purchase_type') # Add relevant dependency if needed, otherwise optional
     def _compute_is_admin(self):
         for record in self:
             # Check if the current user ID is the admin user ID (usually 1)
-            if record.env.user.id == SUPERUSER_ID:
+            if record.env.user.has_group('purchase.group_purchase_manager'):
                 record.is_admin = True
             else:
                 record.is_admin = False
@@ -84,7 +85,7 @@ class PurchaseOrder(models.Model):
                         'price_unit': line.price_unit,
                         'product_uom_id': line.product_uom_id.id,
                         'date_planned': line.date_planned,
-                        
+
                     }))
 
                 new_po = self.env['purchase.order'].create(po_vals)
