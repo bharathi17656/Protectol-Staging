@@ -28,6 +28,7 @@ class PurchaseOrder(models.Model):
     is_admin = fields.Boolean(
         string='Is Admin',
         compute='_compute_is_admin',
+        store=False
         
     )
 
@@ -48,9 +49,9 @@ class PurchaseOrder(models.Model):
 
         user = self.env.user
 
-        if user.has_group('purchase.group_purchase_internal'):
+        if user.has_group('sandy_custom_changes.group_purchase_internal'):
             res['purchase_type'] = 'internal'
-        elif user.has_group('purchase.group_purchase_external'):
+        elif user.has_group('sandy_custom_changes.group_purchase_external'):
             res['purchase_type'] = 'external'
 
         return res
