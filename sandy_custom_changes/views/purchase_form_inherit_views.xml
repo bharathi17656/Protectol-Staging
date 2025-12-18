@@ -11,7 +11,7 @@
             </xpath>
 
              <xpath expr="//field[@name='partner_ref']" position="after">
-                <field name="purchase_type" widget="radio"/>
+                <field name="purchase_type" widget="radio" readonly="is_admin != True"/>
             </xpath>
         </data>
         </field>

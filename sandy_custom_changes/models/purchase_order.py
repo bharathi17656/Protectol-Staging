@@ -20,8 +20,25 @@ class PurchaseOrder(models.Model):
     ],
     string="Purchase Type",
     default=False,
-    readonly=True,
+    required=True,
     tracking=True)
+
+    # Computed field to check if the current user is the administrator (ID 1)
+    is_admin = fields.Boolean(
+        string='Is Admin',
+        compute='_compute_is_admin',
+        
+    )
+
+    @api.depends('is_admin') # Add relevant dependency if needed, otherwise optional
+    def _compute_is_admin(self):
+        for record in self:
+            # Check if the current user ID is the admin user ID (usually 1)
+            if record.env.user.id == SUPERUSER_ID:
+                record.is_admin = True
+            else:
+                record.is_admin = False
+
 
 
     @api.model
@@ -67,6 +84,7 @@ class PurchaseOrder(models.Model):
                         'price_unit': line.price_unit,
                         'product_uom_id': line.product_uom_id.id,
                         'date_planned': line.date_planned,
+                        
                     }))
 
                 new_po = self.env['purchase.order'].create(po_vals)
