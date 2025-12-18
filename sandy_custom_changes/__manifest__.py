@@ -11,7 +11,8 @@
         'purchase',
     ],
     'data': [
-        'security/purchase_groups.xml'
+        'security/purchase_groups.xml',
+        'views/purchase_form_inherit_views',
     ],
     'demo': [
         
