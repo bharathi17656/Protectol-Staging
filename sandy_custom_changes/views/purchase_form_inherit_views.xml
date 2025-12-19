@@ -22,7 +22,7 @@
                          string="Send for Approval"
                          type="object"
                          class="btn-primary"
-                         invisible="state == 'cancel'"/>
+                         invisible="state =='cancel'"/>
              </xpath>
 
              <!-- Approve -->
@@ -44,10 +44,7 @@
                          groups="sandy_custom_changes.group_avp_admin,sandy_custom_changes.group_finance"
                          invisible="state != 'to_approve'"/>
              </xpath>
-             <xpath>
-                
-             </xpath>
-
+             
         </data>
         </field>
     </record>
