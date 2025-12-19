@@ -13,6 +13,41 @@
              <xpath expr="//field[@name='partner_ref']" position="after">
                 <field name="purchase_type" widget="radio" readonly="is_admin != True"/>
             </xpath>
+
+
+            
+             <!-- Send for Approval -->
+             <xpath expr="//button[@name='button_confirm']" position="before">
+                 <button name="action_send_for_approval"
+                         string="Send for Approval"
+                         type="object"
+                         class="btn-primary"
+                         invisible="state == 'cancel'"/>
+             </xpath>
+
+             <!-- Approve -->
+             <xpath expr="//button[@name='button_confirm']" position="before">
+                 <button name="action_approve"
+                         string="Approve"
+                         type="object"
+                         class="btn-success"
+                         groups="sandy_custom_changes.group_avp_admin,sandy_custom_changes.group_finance"
+                         invisible="state != 'to_approve'"/>
+             </xpath>
+
+             <!-- Reject -->
+             <xpath expr="//button[@name='button_confirm']" position="before">
+                 <button name="action_reject"
+                         string="Reject"
+                         type="object"
+                         class="btn-danger"
+                         groups="sandy_custom_changes.group_avp_admin,sandy_custom_changes.group_finance"
+                         invisible="state != 'to_approve'"/>
+             </xpath>
+             <xpath>
+                
+             </xpath>
+
         </data>
         </field>
     </record>
