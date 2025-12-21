@@ -5,15 +5,12 @@ from odoo.exceptions import UserError, ValidationError
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
-    state = fields.Selection([
-        ('draft','Draft'),
-        ('sent','RFQ sent'),
-        ('to_approve','To Approve'),
-        ('purchase','Purchase Order'),
-        ('waiting', 'Waiting for Approval'),
+    state = fields.Selection(selection_add=[     
+        ('to approve', 'Need Approve'),
         ('approved', 'Approved'),
+        ('waiting', 'Waiting for Approval'),
         ('rejected', 'Rejected'),
-        ('cancel','Cancelled'),
+      
     ],)
 
 
@@ -142,7 +139,7 @@ class PurchaseOrder(models.Model):
             if order.amount_total <= 0:
                 raise ValidationError(_("Total amount must be greater than zero."))
 
-            order.state = 'to_approve'
+            order.state = 'to approve'
 
             # Internal notification
             order.message_post(
@@ -179,7 +176,7 @@ class PurchaseOrder(models.Model):
         ):
             raise UserError(_("You are not authorized to approve this PO."))
 
-        self.state = 'approved'
+        self.state = 'purchase'
 
         # Convert to Purchase Order
         self.button_confirm()
