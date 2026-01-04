@@ -22,7 +22,7 @@
                          string="Send for Approval"
                          type="object"
                          class="btn-primary"
-                         invisible="state in ('cancel','approved','purchase')"/>
+                         invisible="state in ('cancel','approved','purchase','to approve')"/>
              </xpath>
 
              <!-- Approve -->
@@ -32,7 +32,7 @@
                          type="object"
                          class="btn-success"
                          groups="sandy_custom_changes.group_avp_admin,sandy_custom_changes.group_finance"
-                         invisible="state != 'to_approve'"/>
+                         invisible="state != 'to approve'"/>
              </xpath>
 
              <!-- Reject -->
@@ -42,10 +42,10 @@
                          type="object"
                          class="btn-danger"
                          groups="sandy_custom_changes.group_avp_admin,sandy_custom_changes.group_finance"
-                         invisible="state != 'to_approve'"/>
+                         invisible="state != 'to approve'"/>
              </xpath>
              <xpath expr="//button[@name='button_confirm']" position="attributes">
-                    <attribute name="invisible">state in ['to_approve','waiting','sent','draft']</attribute>
+                    <attribute name="invisible">state in ['to approve','waiting','sent','draft','purchase']</attribute>
                 
              </xpath>
             

@@ -9,9 +9,13 @@
     'category': '',
     'depends': [
         'purchase',
+        'mail',
+        'contacts',
+
     ],
     'data': [
         'security/purchase_groups.xml',
+        'data/mail_template.xml',
         'views/purchase_form_inherit_views.xml',
     ],
     'demo': [

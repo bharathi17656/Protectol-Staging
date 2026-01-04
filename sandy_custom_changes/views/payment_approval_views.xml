@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+<record id="account_move_finance_only_rule" model="ir.rule">
+    <field name="name">Accounting access restricted to Finance</field>
+    <field name="model_id" ref="account.model_account_move"/>
+    <field name="domain_force">[(1, '=', 1)]</field>
+    <field name="groups"
+           eval="[
+             (4,ref('account.group_account_manager')),
+             (4, ref('sandy_custom_changes.group_avp_admin')),
+             (4, ref('sandy_custom_changes.group_finance_controller')),
+             (4, ref('sandy_custom_changes.group_finance_executive'))
+           ]"/>
+</record>
+</odoo>
