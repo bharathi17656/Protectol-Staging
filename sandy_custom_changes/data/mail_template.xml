@@ -5,7 +5,6 @@
         <field name="name">Purchase Order Email Demo Template</field>
         <field name="model_id" ref="purchase.model_purchase_order"/>
         <field name="email_from">{{ object.company_id.email }}</field>
-        <field name="email_to">{{object.has_group('sandy_custom_changes.group_finance_executive')}}</field>
         <field name="subject"> Purchase Order {{ object.name }}</field>
         <field name="body_html" type="html">
             <div style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">
